@@ -58,7 +58,10 @@ func GetHeroEndPoint(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 
-	json.NewEncoder(w).Encode(&Hero{}) //Si NO coincide, se retorna un objeto vacío
+	//Si NO coincide, se retorna un objeto vacío -> json.NewEncoder(w).Encode(&Hero{})
+
+	w.WriteHeader(http.StatusNotFound) //404 Not Found
+	w.Write([]byte("No se encontró el heroe."))
 
 }
 
